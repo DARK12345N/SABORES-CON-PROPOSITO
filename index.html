@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#173f32">
+    <meta name="description" content="Descubre snacks naturales de Sabores con Propósito y arma tu pedido en línea.">
+    <title>Sabores con Propósito | Snacks naturales</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: #23332d;
+            background: #f7f8f3;
+            font-synthesis: none;
+            text-rendering: optimizeLegibility;
+            --green: #276749;
+            --green-dark: #173f32;
+            --green-soft: #e8f1e9;
+            --text-muted: #718078;
+            --border: #e5eae3;
+            --shadow: 0 16px 40px rgba(27, 55, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse at 12% 18%, rgba(227, 238, 221, 0.8), transparent 30rem),
+                #f7f8f3;
+        }
+
+        button,
+        a {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid #e6a74e;
+            outline-offset: 3px;
+        }
+
+        .site-header {
+            position: sticky;
+            z-index: 5;
+            top: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(23, 63, 50, 0.97);
+            color: white;
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-content {
+            display: flex;
+            width: min(1160px, calc(100% - 40px));
+            min-height: 72px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            display: block;
+            width: 78px;
+            flex: 0 0 78px;
+            height: auto;
+        }
+
+        .brand-name {
+            font-size: 0.95rem;
+            font-weight: 750;
+            letter-spacing: 0.035em;
+            text-transform: uppercase;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.92rem;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .cart-open {
+            display: inline-flex;
+            min-height: 42px;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: white;
+            color: var(--green-dark);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .cart-count {
+            display: grid;
+            min-width: 22px;
+            height: 22px;
+            place-items: center;
+            padding: 0 5px;
+            border-radius: 99px;
+            background: var(--green-soft);
+            color: var(--green-dark);
+            font-size: 0.75rem;
+        }
+
+        .page-shell {
+            width: min(1160px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .hero {
+            position: relative;
+            display: grid;
+            min-height: 380px;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 30px;
+            overflow: hidden;
+            margin: 34px 0 28px;
+            padding: 50px clamp(28px, 6vw, 72px);
+            border-radius: 26px;
+            background:
+                radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.12), transparent 16rem),
+                linear-gradient(125deg, #173f32, #28694c);
+            box-shadow: 0 22px 50px rgba(23, 63, 50, 0.18);
+            color: white;
+        }
+
+        .hero::after {
+            position: absolute;
+            right: -100px;
+            bottom: -240px;
+            width: 430px;
+            height: 430px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            content: "";
+            pointer-events: none;
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+            max-width: 580px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            color: #d3e6d5;
+            font-size: 0.76rem;
+            font-weight: 750;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 22px;
+            height: 2px;
+            background: #e8b96d;
+            content: "";
+        }
+
+        .hero h1 {
+            max-width: 600px;
+            margin-bottom: 16px;
+            font-size: clamp(2.4rem, 5vw, 4.1rem);
+            font-weight: 750;
+            letter-spacing: -0.055em;
+            line-height: 1.05;
+        }
+
+        .hero h1 span {
+            color: #eac17f;
+        }
+
+        .hero-description {
+            max-width: 470px;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .primary-link {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            border-radius: 10px;
+            background: #f0c77f;
+            color: #283b2f;
+            font-size: 0.92rem;
+            font-weight: 750;
+            text-decoration: none;
+            transition: background-color 160ms ease, transform 160ms ease;
+        }
+
+        .primary-link:hover {
+            transform: translateY(-2px);
+            background: #f5d69f;
+        }
+
+        .hero-art {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            min-height: 260px;
+            place-items: center;
+        }
+
+        .snack-bowl {
+            width: min(280px, 75vw);
+            aspect-ratio: 1;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            box-shadow: 0 28px 55px rgba(7, 27, 18, 0.28), inset 0 0 0 13px rgba(255, 255, 255, 0.16);
+            object-fit: cover;
+        }
+
+        .art-note {
+            position: absolute;
+            right: 2%;
+            bottom: 8%;
+            padding: 11px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            background: rgba(18, 52, 39, 0.75);
+            color: #f6f1e5;
+            font-size: 0.82rem;
+            font-weight: 650;
+            backdrop-filter: blur(8px);
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 58px;
+        }
+
+        .benefit {
+            display: flex;
+            min-height: 72px;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 18px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.76);
+        }
+
+        .benefit-icon {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            flex: 0 0 auto;
+            place-items: center;
+            border-radius: 11px;
+            background: var(--green-soft);
+            color: var(--green);
+            font-size: 1rem;
+        }
+
+        .benefit strong {
+            display: block;
+            margin-bottom: 3px;
+            color: #314238;
+            font-size: 0.88rem;
+        }
+
+        .benefit span:last-child {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+        }
+
+        .home-cta h2 {
+            color: #24352b;
+            font-size: clamp(1.7rem, 3vw, 2.2rem);
+            letter-spacing: -0.04em;
+        }
+
+        .home-cta p {
+            max-width: 600px;
+            margin: 0;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        .home-contact-link {
+            color: var(--green);
+            font-size: 0.88rem;
+            font-weight: 750;
+            text-decoration: none;
+        }
+
+        .home-contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .home-cta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 58px;
+            padding: 28px clamp(22px, 5vw, 48px);
+            border: 1px solid #dfe9df;
+            border-radius: 20px;
+            background: linear-gradient(120deg, #edf4eb, #f8f6ec);
+        }
+
+        .home-cta h2 {
+            margin-bottom: 8px;
+            font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+        }
+
+        .home-cta-actions {
+            display: flex;
+            flex: 0 0 auto;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .products-section {
+            padding-bottom: 70px;
+            scroll-margin-top: 96px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .section-kicker {
+            margin-bottom: 7px;
+            color: var(--green);
+            font-size: 0.74rem;
+            font-weight: 750;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            color: #24352b;
+            font-size: clamp(1.7rem, 3vw, 2.2rem);
+            letter-spacing: -0.04em;
+        }
+
+        .product-count {
+            padding-bottom: 5px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        .photo-note {
+            margin-top: 5px;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            text-align: right;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: white;
+            box-shadow: 0 8px 24px rgba(27, 55, 42, 0.045);
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .product-art {
+            position: relative;
+            height: 185px;
+            overflow: hidden;
+            background: #e8eee7;
+        }
+
+        .product-art img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 220ms ease;
+        }
+
+        .product-card:hover .product-art img {
+            transform: scale(1.05);
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-category {
+            display: inline-block;
+            margin-bottom: 9px;
+            color: var(--green);
+            font-size: 0.72rem;
+            font-weight: 750;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        .product-content h3 {
+            margin-bottom: 8px;
+            color: #293a30;
+            font-size: 1.08rem;
+            letter-spacing: -0.02em;
+        }
+
+        .product-description {
+            min-height: 44px;
+            margin-bottom: 17px;
+            color: var(--text-muted);
+            font-size: 0.86rem;
+            line-height: 1.55;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .product-price {
+            color: var(--green-dark);
+            font-size: 1.16rem;
+            font-weight: 800;
+        }
+
+        .product-stock {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+        }
+
+        .add-button,
+        .whatsapp-button,
+        .clear-button,
+        .quantity-button,
+        .remove-button,
+        .dialog-close {
+            border: 0;
+            font-weight: 700;
+            transition: background-color 150ms ease, color 150ms ease;
+        }
+
+        .add-button {
+            width: 100%;
+            min-height: 44px;
+            border-radius: 10px;
+            background: var(--green);
+            color: white;
+            font-size: 0.88rem;
+        }
+
+        .add-button:hover:not(:disabled) {
+            background: var(--green-dark);
+        }
+
+        .add-button:disabled {
+            background: #e8ece8;
+            color: #89938c;
+            cursor: not-allowed;
+        }
+
+        .site-footer {
+            padding: 24px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            text-align: center;
+        }
+
+        .site-footer p {
+            margin: 0 0 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 18px;
+        }
+
+        .footer-links a {
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .cart-dialog {
+            position: fixed;
+            inset: 0 0 0 auto;
+            width: min(460px, 100%);
+            height: 100vh;
+            height: 100dvh;
+            max-height: 100dvh;
+            margin: 0 0 0 auto;
+            padding: 0;
+            border: 0;
+            background: white;
+            box-shadow: -20px 0 60px rgba(14, 37, 25, 0.18);
+            color: #23332d;
+        }
+
+        .cart-dialog[open] {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-dialog::backdrop {
+            background: rgba(16, 38, 27, 0.55);
+            backdrop-filter: blur(3px);
+        }
+
+        .receipt-dialog {
+            width: min(560px, calc(100% - 32px));
+            max-width: none;
+            max-height: calc(100vh - 32px);
+            margin: auto;
+            padding: 0;
+            overflow: auto;
+            border: 0;
+            border-radius: 18px;
+            background: white;
+            box-shadow: 0 24px 70px rgba(14, 37, 25, 0.24);
+            color: #23332d;
+        }
+
+        .receipt-dialog::backdrop {
+            background: rgba(16, 38, 27, 0.6);
+            backdrop-filter: blur(3px);
+        }
+
+        .receipt-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .receipt-header h2 {
+            color: var(--green-dark);
+            font-size: 1.25rem;
+        }
+
+        .receipt-header p,
+        .receipt-meta span {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        .receipt-body {
+            padding: 22px 24px;
+        }
+
+        .receipt-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .receipt-meta div {
+            display: grid;
+            gap: 4px;
+        }
+
+        .receipt-meta strong {
+            color: #35483b;
+            font-size: 0.88rem;
+        }
+
+        .receipt-table-wrap {
+            overflow-x: auto;
+        }
+
+        .receipt-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+
+        .receipt-table th,
+        .receipt-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .receipt-table th:last-child,
+        .receipt-table td:last-child {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .receipt-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            color: var(--green-dark);
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .receipt-status {
+            margin-top: 18px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: #f5f7f3;
+            color: #5e6f63;
+            font-size: 0.78rem;
+            line-height: 1.5;
+        }
+
+        .receipt-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 18px 24px 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .receipt-actions a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .dialog-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dialog-header h2 {
+            font-size: 1.2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .dialog-header p {
+            margin-top: 4px;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        .dialog-close {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #f1f4f0;
+            color: #47574d;
+            font-size: 1.2rem;
+        }
+
+        .dialog-close:hover {
+            background: #e5ebe4;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 24px;
+        }
+
+        .cart-empty {
+            display: grid;
+            min-height: 260px;
+            place-content: center;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .cart-empty span {
+            margin-bottom: 12px;
+            font-size: 2.4rem;
+        }
+
+        .cart-empty strong {
+            margin-bottom: 5px;
+            color: #34463a;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item h3 {
+            margin-bottom: 5px;
+            color: #2b3c31;
+            font-size: 0.92rem;
+        }
+
+        .cart-item p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .cart-item-total {
+            color: var(--green-dark);
+            font-size: 0.9rem;
+            font-weight: 750;
+            text-align: right;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quantity-button {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: var(--green-soft);
+            color: var(--green-dark);
+        }
+
+        .quantity-button:hover {
+            background: #d5e7d8;
+        }
+
+        .quantity-value {
+            min-width: 18px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .remove-button {
+            margin-left: 4px;
+            padding: 5px;
+            background: transparent;
+            color: #a64b3c;
+            font-size: 0.76rem;
+        }
+
+        .remove-button:hover {
+            color: #792d22;
+            text-decoration: underline;
+        }
+
+        .cart-footer {
+            padding: 20px 24px 24px;
+            border-top: 1px solid var(--border);
+            background: #fbfcfa;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            color: #34463a;
+            font-size: 1rem;
+            font-weight: 750;
+        }
+
+        .cart-footer-actions {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 10px;
+        }
+
+        .clear-button,
+        .whatsapp-button {
+            min-height: 46px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+        }
+
+        .clear-button {
+            background: #edf1ed;
+            color: #46564b;
+        }
+
+        .clear-button:hover:not(:disabled) {
+            background: #e0e7e1;
+        }
+
+        .whatsapp-button {
+            background: #238a55;
+            color: white;
+        }
+
+        .whatsapp-button:hover:not(:disabled) {
+            background: #176f43;
+        }
+
+        .clear-button:disabled,
+        .whatsapp-button:disabled {
+            background: #e5e9e5;
+            color: #929b94;
+            cursor: not-allowed;
+        }
+
+        .toast {
+            position: fixed;
+            z-index: 10;
+            right: 20px;
+            bottom: 20px;
+            max-width: min(420px, calc(100vw - 40px));
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: #203b2e;
+            box-shadow: var(--shadow);
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .toast[hidden] {
+            display: none;
+        }
+
+        @media (max-width: 800px) {
+            .hero {
+                min-height: 340px;
+                grid-template-columns: 1.1fr 0.8fr;
+                padding: 42px 34px;
+            }
+
+            .hero-art {
+                min-height: 220px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .home-cta {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .nav-content,
+            .page-shell {
+                width: min(100% - 28px, 520px);
+            }
+
+            .nav-content {
+                min-height: 64px;
+            }
+
+            .brand {
+                gap: 4px;
+            }
+
+            .brand-logo {
+                width: 44px;
+                flex-basis: 44px;
+            }
+
+            .brand-name {
+                font-size: 0.54rem;
+                letter-spacing: 0;
+            }
+
+            .nav-actions {
+                gap: 8px;
+            }
+
+            .nav-content {
+                gap: 4px;
+            }
+
+            .nav-link {
+                display: none;
+            }
+
+            .cart-open {
+                min-height: 40px;
+                padding: 6px 8px;
+                font-size: 0.78rem;
+            }
+
+            .hero {
+                min-height: 0;
+                grid-template-columns: 1fr;
+                gap: 0;
+                margin-top: 18px;
+                padding: 36px 25px 20px;
+                border-radius: 20px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.35rem, 11vw, 3.4rem);
+            }
+
+            .hero-description {
+                font-size: 0.92rem;
+            }
+
+            .hero-art {
+                min-height: 205px;
+            }
+
+            .snack-bowl {
+                width: 180px;
+            }
+
+            .art-note {
+                right: 4%;
+                bottom: 3%;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+                gap: 9px;
+                margin-bottom: 42px;
+            }
+
+            .home-cta-actions {
+                flex-wrap: wrap;
+            }
+
+            .benefit {
+                min-height: 62px;
+                padding: 11px 14px;
+            }
+
+            .section-heading {
+                align-items: start;
+                flex-direction: column;
+                gap: 6px;
+                margin-bottom: 17px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .product-card {
+                display: grid;
+                grid-template-columns: 116px minmax(0, 1fr);
+                align-items: stretch;
+            }
+
+            .product-art {
+                height: auto;
+                min-height: 185px;
+            }
+
+            .product-art img {
+                min-height: 185px;
+            }
+
+            .product-content {
+                padding: 15px;
+            }
+
+            .product-content h3 {
+                font-size: 0.96rem;
+            }
+
+            .product-description {
+                min-height: 0;
+                margin-bottom: 11px;
+                font-size: 0.8rem;
+            }
+
+            .product-meta {
+                align-items: start;
+                flex-direction: column;
+                gap: 4px;
+                margin-bottom: 10px;
+            }
+
+            .add-button {
+                min-height: 40px;
+                font-size: 0.8rem;
+            }
+
+            .cart-footer-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .receipt-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .site-footer {
+                padding-bottom: 26px;
+            }
+        }
+
+        @media (max-width: 370px) {
+            .product-card {
+                grid-template-columns: 94px minmax(0, 1fr);
+            }
+
+            .product-content {
+                padding: 12px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+
+        @media print {
+            body * {
+                visibility: hidden !important;
+            }
+
+            #modalRecibo,
+            #modalRecibo * {
+                visibility: visible !important;
+            }
+
+            #modalRecibo {
+                position: absolute;
+                inset: 0 auto auto 0;
+                width: 100%;
+                max-width: none;
+                max-height: none;
+                margin: 0;
+                overflow: visible;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .receipt-actions,
+            .receipt-close {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-content" aria-label="Navegación principal">
+            <a class="brand" href="index.html" aria-label="Sabores con Propósito, inicio">
+                <img class="brand-logo" src="IMAGEN/image_5a3834a5.png" alt="">
+                <span class="brand-name">Sabores con Propósito</span>
+            </a>
+            <div class="nav-actions">
+                <a class="nav-link" href="index.html" aria-current="page">Inicio</a>
+                <a class="nav-link" href="productos.html">Productos</a>
+                <a class="nav-link" href="contacto.html">Contacto</a>
+                <a class="cart-open" href="carrito.html">
+                    Mi carrito
+                    <span class="cart-count" id="contador-carrito" data-cart-count aria-label="0 productos">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <section class="hero" aria-labelledby="titulo-principal">
+            <div class="hero-copy">
+                <p class="eyebrow">Naturalmente, con propósito</p>
+                <h1 id="titulo-principal">Lo natural también puede ser <span>delicioso.</span></h1>
+                <p class="hero-description">
+                    Snacks hechos con ingredientes honestos para acompañar tus días con energía y buen sabor.
+                </p>
+                <a class="primary-link" href="productos.html">Descubrir productos <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+                <img
+                    class="snack-bowl"
+                    src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&amp;fit=crop&amp;w=700&amp;q=85"
+                    alt="Tostadas con banana y arándanos"
+                    fetchpriority="high"
+                >
+                <div class="art-note">Pequeños antojos, gran propósito</div>
+            </div>
+        </section>
+
+        <section class="benefits" aria-label="Lo que nos hace diferentes">
+            <div class="benefit">
+                <span class="benefit-icon" aria-hidden="true">✦</span>
+                <div><strong>Ingredientes reales</strong><span>Sabores simples y naturales</span></div>
+            </div>
+            <div class="benefit">
+                <span class="benefit-icon" aria-hidden="true">♡</span>
+                <div><strong>Hecho con propósito</strong><span>Calidad en cada detalle</span></div>
+            </div>
+            <div class="benefit">
+                <span class="benefit-icon" aria-hidden="true">↗</span>
+                <div><strong>Pedido fácil</strong><span>Coordina tu compra por WhatsApp</span></div>
+            </div>
+        </section>
+
+        <section class="home-cta" aria-labelledby="titulo-invitacion">
+            <div>
+                <h2 id="titulo-invitacion">Encuentra tu próximo favorito</h2>
+                <p>Explora el catálogo y elige algo rico para acompañar tu día.</p>
+            </div>
+            <div class="home-cta-actions">
+                <a class="primary-link" href="productos.html">Explorar productos <span aria-hidden="true">→</span></a>
+                <a class="home-contact-link" href="contacto.html">¿Tienes preguntas? Contáctanos</a>
+            </div>
+        </section>
+
+        <section class="products-section" id="productos" aria-labelledby="titulo-productos" hidden>
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">Una pausa que hace bien</p>
+                    <h2 id="titulo-productos">Nuestros snacks</h2>
+                </div>
+                <div>
+                    <p class="product-count" id="cantidad-productos"></p>
+                    <p class="photo-note">Fotografías ilustrativas de Pexels y Unsplash</p>
+                </div>
+            </div>
+            <div class="product-grid" id="contenedor-productos" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Sabores con Propósito · Buenos ingredientes, mejores momentos.</p>
+        <nav class="footer-links" aria-label="Navegación inferior">
+            <a href="index.html">Inicio</a>
+            <a href="productos.html">Productos</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="carrito.html">Mi carrito</a>
+        </nav>
+    </footer>
+
+    <dialog class="cart-dialog" id="modalCarrito" aria-labelledby="titulo-carrito">
+        <div class="dialog-header">
+            <div>
+                <h2 id="titulo-carrito">Tu carrito</h2>
+                <p id="resumen-carrito">Revisa tu selección</p>
+            </div>
+            <button class="dialog-close" id="cerrar-carrito" type="button" aria-label="Cerrar carrito">×</button>
+        </div>
+        <div class="cart-items" id="lista-carrito"></div>
+        <div class="cart-footer">
+            <p class="cart-total"><span>Total</span><span>Bs. <span id="total-carrito">0.00</span></span></p>
+            <div class="cart-footer-actions">
+                <button class="clear-button" id="vaciar-carrito" type="button">Vaciar carrito</button>
+                <button class="whatsapp-button" id="enviar-pedido" type="button">Generar recibo</button>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog class="receipt-dialog" id="modalRecibo" aria-labelledby="titulo-recibo">
+        <div class="receipt-header">
+            <div>
+                <h2 id="titulo-recibo">Recibo del pedido</h2>
+                <p>Sabores con Propósito</p>
+            </div>
+            <button class="dialog-close receipt-close" id="cerrar-recibo" type="button" aria-label="Cerrar recibo">×</button>
+        </div>
+        <div class="receipt-body" id="contenido-recibo"></div>
+        <div class="receipt-actions">
+            <button class="clear-button" id="imprimir-recibo" type="button">Imprimir / Guardar PDF</button>
+            <a class="whatsapp-button" id="compartir-recibo" href="#" target="_blank" rel="noopener noreferrer">
+                Enviar recibo por WhatsApp
+            </a>
+        </div>
+    </dialog>
+
+    <div class="toast" id="notificacion" role="status" aria-live="polite" hidden></div>
+
+    <script>
+        const snacks = [
+            {
+                id: 1,
+                nombre: "Chips de Plátano Orgánico",
+                descripcion: "Crujientes rodajas horneadas con sal marina.",
+                categoria: "Horneado",
+                precio: 15.00,
+                stock: 50,
+                imagen: "https://images.pexels.com/photos/9191924/pexels-photo-9191924.jpeg?auto=compress&cs=tinysrgb&w=900",
+                textoImagen: "Chips de plátano crujientes"
+            },
+            {
+                id: 2,
+                nombre: "Mix Energético Andino",
+                descripcion: "Quinua pop, almendras, pasas y semillas.",
+                categoria: "Energía natural",
+                precio: 22.50,
+                stock: 30,
+                imagen: "https://images.pexels.com/photos/30291266/pexels-photo-30291266.jpeg?auto=compress&cs=tinysrgb&w=900",
+                textoImagen: "Frutas deshidratadas y frutos secos"
+            },
+            {
+                id: 3,
+                nombre: "Galletas de Avena y Miel",
+                descripcion: "Endulzadas naturalmente, sin conservantes.",
+                categoria: "Artesanal",
+                precio: 12.00,
+                stock: 40,
+                imagen: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=85",
+                textoImagen: "Galletas recién horneadas"
+            },
+            {
+                id: 4,
+                nombre: "Tostadas Dulces con Fruta",
+                descripcion: "Tostadas con fruta fresca y un toque de miel.",
+                categoria: "Desayuno",
+                precio: 18.00,
+                stock: 28,
+                imagen: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=900&q=85",
+                textoImagen: "Tostadas con banana y arándanos"
+            },
+            {
+                id: 5,
+                nombre: "Granola de Avena y Cacao",
+                descripcion: "Mezcla crujiente de avena con el sabor del cacao.",
+                categoria: "Energía natural",
+                precio: 13.00,
+                stock: 35,
+                imagen: "https://images.pexels.com/photos/6823306/pexels-photo-6823306.jpeg?auto=compress&cs=tinysrgb&w=900",
+                textoImagen: "Granola con avena"
+            },
+            {
+                id: 6,
+                nombre: "Manzanas Frescas",
+                descripcion: "Manzanas seleccionadas para una merienda fresca.",
+                categoria: "Fruta",
+                precio: 14.00,
+                stock: 22,
+                imagen: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&fit=crop&w=900&q=85",
+                textoImagen: "Manzanas frescas"
+            },
+            {
+                id: 7,
+                nombre: "Pan Integral de Semillas",
+                descripcion: "Pan artesanal con una mezcla crujiente de semillas.",
+                categoria: "Horneado",
+                precio: 19.50,
+                stock: 18,
+                imagen: "https://images.pexels.com/photos/5869670/pexels-photo-5869670.jpeg?auto=compress&cs=tinysrgb&w=900",
+                textoImagen: "Pan artesanal con semillas de sésamo"
+            },
+            {
+                id: 8,
+                nombre: "Galletas de Cacao Artesanal",
+                descripcion: "Galletas de sabor intenso para acompañar tu pausa.",
+                categoria: "Artesanal",
+                precio: 16.00,
+                stock: 24,
+                imagen: "https://images.pexels.com/photos/8081573/pexels-photo-8081573.jpeg?auto=compress&cs=tinysrgb&w=900",
+                textoImagen: "Galletas con chispas de chocolate"
+            },
+            {
+                id: 9,
+                nombre: "Frutillas Frescas",
+                descripcion: "Frutillas seleccionadas para una merienda dulce.",
+                categoria: "Fruta",
+                precio: 17.50,
+                stock: 25,
+                imagen: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=900&q=85",
+                textoImagen: "Frutillas frescas"
+            },
+            {
+                id: 10,
+                nombre: "Arándanos para la Merienda",
+                descripcion: "Pequeños frutos para disfrutar solos o acompañados.",
+                categoria: "Fruta",
+                precio: 18.00,
+                stock: 24,
+                imagen: "https://images.unsplash.com/photo-1498557850523-fd3d118b962e?auto=format&fit=crop&w=900&q=85",
+                textoImagen: "Arándanos frescos"
+            },
+            {
+                id: 11,
+                nombre: "Miel Pura de Bosque",
+                descripcion: "Miel para endulzar tus desayunos y meriendas.",
+                categoria: "Endulzantes",
+                precio: 25.00,
+                stock: 20,
+                imagen: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=900&q=85",
+                textoImagen: "Miel dorada"
+            },
+            {
+                id: 12,
+                nombre: "Croissants Artesanales",
+                descripcion: "Hojaldre dorado para acompañar una pausa especial.",
+                categoria: "Horneado",
+                precio: 20.00,
+                stock: 18,
+                imagen: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=85",
+                textoImagen: "Croissants recién horneados"
+            },
+            {
+                id: 13,
+                nombre: "Tostadas con Frutos Rojos",
+                descripcion: "Tostadas dulces con fruta para compartir.",
+                categoria: "Desayuno",
+                precio: 21.50,
+                stock: 15,
+                imagen: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=900&q=85",
+                textoImagen: "Tostadas con fruta fresca"
+            },
+            {
+                id: 14,
+                nombre: "Manzana con Canela",
+                descripcion: "Rodajas de manzana con un toque de canela.",
+                categoria: "Fruta",
+                precio: 14.50,
+                stock: 22,
+                imagen: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&fit=crop&w=900&q=85",
+                textoImagen: "Manzanas frescas"
+            },
+            {
+                id: 15,
+                nombre: "Galletas con Chispas de Chocolate",
+                descripcion: "Galletas horneadas para acompañar el café o el té.",
+                categoria: "Artesanal",
+                precio: 15.00,
+                stock: 26,
+                imagen: "https://images.pexels.com/photos/8081573/pexels-photo-8081573.jpeg?auto=compress&cs=tinysrgb&w=900",
+                textoImagen: "Galletas con chispas de chocolate"
+            },
+            {
+                id: 16,
+                nombre: "Bocados de Chocolate Amargo",
+                descripcion: "Pequeños bocados con el sabor intenso del cacao.",
+                categoria: "Cacao",
+                precio: 17.50,
+                stock: 21,
+                imagen: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=85",
+                textoImagen: "Chocolate oscuro"
+            }
+        ];
+
+        const TELEFONO_NEGOCIO = "59168947878";
+        const CLAVE_CARRITO = "sabores-con-proposito-carrito";
+
+        function cargarCarritoGuardado() {
+            try {
+                const guardado = localStorage.getItem(CLAVE_CARRITO);
+                const items = guardado ? JSON.parse(guardado) : [];
+                return Array.isArray(items) ? items : [];
+            } catch (error) {
+                console.error("No se pudo leer el carrito guardado.", error);
+                return [];
+            }
+        }
+
+        let carrito = cargarCarritoGuardado();
+        let reciboActual = null;
+        let temporizadorNotificacion;
+
+        const contenedorProductos = document.getElementById("contenedor-productos");
+        const listaCarrito = document.getElementById("lista-carrito");
+        const modalCarrito = document.getElementById("modalCarrito");
+        const modalRecibo = document.getElementById("modalRecibo");
+        const contenidoRecibo = document.getElementById("contenido-recibo");
+
+        function obtenerCantidad(id) {
+            return carrito.find(item => item.id === id)?.cantidad || 0;
+        }
+
+        function renderizarProductos() {
+            document.getElementById("cantidad-productos").textContent =
+                `${snacks.length} ${snacks.length === 1 ? "opción disponible" : "opciones disponibles"}`;
+
+            contenedorProductos.innerHTML = snacks.map(snack => {
+                const disponibles = snack.stock - obtenerCantidad(snack.id);
+                return `
+                    <article class="product-card">
+                        <div class="product-art">
+                            <img src="${snack.imagen}" alt="${snack.textoImagen}" loading="lazy" decoding="async">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">${snack.categoria}</span>
+                            <h3>${snack.nombre}</h3>
+                            <p class="product-description">${snack.descripcion}</p>
+                            <div class="product-meta">
+                                <span class="product-price">Bs. ${snack.precio.toFixed(2)}</span>
+                                <span class="product-stock">${disponibles} disponibles</span>
+                            </div>
+                            <button class="add-button" type="button" data-add-id="${snack.id}" ${disponibles <= 0 ? "disabled" : ""}>
+                                ${disponibles <= 0 ? "Sin stock disponible" : "Agregar al carrito"}
+                            </button>
+                        </div>
+                    </article>
+                `;
+            }).join("");
+        }
+
+        function renderizarCarrito() {
+            const cantidadTotal = carrito.reduce((total, item) => total + item.cantidad, 0);
+            const montoTotal = carrito.reduce((total, item) => total + item.precio * item.cantidad, 0);
+            const contador = document.getElementById("contador-carrito");
+            const limpiar = document.getElementById("vaciar-carrito");
+            const pedir = document.getElementById("enviar-pedido");
+
+            contador.textContent = cantidadTotal;
+            contador.setAttribute("aria-label", `${cantidadTotal} ${cantidadTotal === 1 ? "producto" : "productos"}`);
+            document.getElementById("total-carrito").textContent = montoTotal.toFixed(2);
+            document.getElementById("resumen-carrito").textContent =
+                `${cantidadTotal} ${cantidadTotal === 1 ? "producto seleccionado" : "productos seleccionados"}`;
+            limpiar.disabled = carrito.length === 0;
+            pedir.disabled = carrito.length === 0;
+
+            if (carrito.length === 0) {
+                listaCarrito.innerHTML = `
+                    <div class="cart-empty">
+                        <span aria-hidden="true">🛍️</span>
+                        <strong>Tu carrito está vacío</strong>
+                        <p>Agrega tus snacks favoritos para empezar.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            listaCarrito.innerHTML = carrito.map(item => `
+                <article class="cart-item">
+                    <div>
+                        <h3>${item.nombre}</h3>
+                        <p>Bs. ${item.precio.toFixed(2)} por unidad</p>
+                        <div class="cart-item-actions">
+                            <button class="quantity-button" type="button" data-action="decrease" data-id="${item.id}" aria-label="Quitar una unidad de ${item.nombre}">−</button>
+                            <span class="quantity-value">${item.cantidad}</span>
+                            <button class="quantity-button" type="button" data-action="increase" data-id="${item.id}" aria-label="Agregar una unidad de ${item.nombre}">+</button>
+                            <button class="remove-button" type="button" data-action="remove" data-id="${item.id}">Eliminar</button>
+                        </div>
+                    </div>
+                    <span class="cart-item-total">Bs. ${(item.precio * item.cantidad).toFixed(2)}</span>
+                </article>
+            `).join("");
+        }
+
+        function actualizarInterfaz() {
+            localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
+            renderizarProductos();
+            renderizarCarrito();
+        }
+
+        function mostrarNotificacion(mensaje) {
+            const notificacion = document.getElementById("notificacion");
+            notificacion.textContent = mensaje;
+            notificacion.hidden = false;
+            clearTimeout(temporizadorNotificacion);
+            temporizadorNotificacion = setTimeout(() => {
+                notificacion.hidden = true;
+            }, 3200);
+        }
+
+        function generarReciboPedido() {
+            if (carrito.length === 0) {
+                mostrarNotificacion("Agrega algún producto antes de generar el recibo.");
+                return;
+            }
+
+            const ahora = new Date();
+            reciboActual = {
+                codigo: `SCP-${ahora.getTime().toString(36).toUpperCase()}`,
+                fecha: new Intl.DateTimeFormat("es-BO", {
+                    dateStyle: "medium",
+                    timeStyle: "short"
+                }).format(ahora),
+                productos: carrito.map(item => ({
+                    nombre: item.nombre,
+                    cantidad: item.cantidad,
+                    precio: item.precio
+                })),
+                total: carrito.reduce((suma, item) => suma + item.precio * item.cantidad, 0)
+            };
+
+            const filas = reciboActual.productos.map(item => `
+                <tr>
+                    <td>${item.nombre}</td>
+                    <td>${item.cantidad}</td>
+                    <td>Bs. ${item.precio.toFixed(2)}</td>
+                    <td>Bs. ${(item.precio * item.cantidad).toFixed(2)}</td>
+                </tr>
+            `).join("");
+
+            contenidoRecibo.innerHTML = `
+                <div class="receipt-meta">
+                    <div><span>Número de pedido</span><strong>${reciboActual.codigo}</strong></div>
+                    <div><span>Fecha</span><strong>${reciboActual.fecha}</strong></div>
+                    <div><span>WhatsApp del negocio</span><strong>+591 68947878</strong></div>
+                </div>
+                <div class="receipt-table-wrap">
+                    <table class="receipt-table">
+                        <thead>
+                            <tr><th>Producto</th><th>Cant.</th><th>Precio</th><th>Subtotal</th></tr>
+                        </thead>
+                        <tbody>${filas}</tbody>
+                    </table>
+                </div>
+                <p class="receipt-total"><span>Total</span><span>Bs. ${reciboActual.total.toFixed(2)}</span></p>
+                <p class="receipt-status">
+                    Pedido pendiente de confirmación y pago. Este recibo no acredita que el pago se haya realizado.
+                </p>
+            `;
+
+            const lineasPedido = reciboActual.productos.map(item =>
+                `${item.cantidad} x ${item.nombre} — Bs. ${(item.precio * item.cantidad).toFixed(2)}`
+            );
+            const mensaje = [
+                `Recibo del pedido ${reciboActual.codigo} — Sabores con Propósito`,
+                `Fecha: ${reciboActual.fecha}`,
+                "",
+                ...lineasPedido,
+                "",
+                `Total: Bs. ${reciboActual.total.toFixed(2)}`,
+                "Estado: pendiente de confirmación y pago."
+            ].join("\n");
+            document.getElementById("compartir-recibo").href =
+                `https://wa.me/${TELEFONO_NEGOCIO}?text=${encodeURIComponent(mensaje)}`;
+
+            modalCarrito.close();
+            modalRecibo.showModal();
+        }
+
+        function agregarAlCarrito(id) {
+            const producto = snacks.find(snack => snack.id === id);
+            if (!producto || obtenerCantidad(id) >= producto.stock) {
+                mostrarNotificacion("No hay más unidades disponibles de este producto.");
+                return;
+            }
+
+            const existente = carrito.find(item => item.id === id);
+            if (existente) {
+                existente.cantidad += 1;
+            } else {
+                carrito.push({ ...producto, cantidad: 1 });
+            }
+
+            actualizarInterfaz();
+            mostrarNotificacion(`${producto.nombre} agregado al carrito.`);
+        }
+
+        contenedorProductos.addEventListener("click", event => {
+            const boton = event.target.closest("[data-add-id]");
+            if (boton) agregarAlCarrito(Number(boton.dataset.addId));
+        });
+
+        listaCarrito.addEventListener("click", event => {
+            const boton = event.target.closest("[data-action]");
+            if (!boton) return;
+
+            const id = Number(boton.dataset.id);
+            const item = carrito.find(producto => producto.id === id);
+            if (!item) return;
+
+            if (boton.dataset.action === "increase") {
+                const producto = snacks.find(snack => snack.id === id);
+                if (item.cantidad < producto.stock) item.cantidad += 1;
+                else mostrarNotificacion("Alcanzaste el stock disponible de este producto.");
+            } else if (boton.dataset.action === "decrease") {
+                item.cantidad -= 1;
+                if (item.cantidad <= 0) carrito = carrito.filter(producto => producto.id !== id);
+            } else if (boton.dataset.action === "remove") {
+                carrito = carrito.filter(producto => producto.id !== id);
+            }
+
+            actualizarInterfaz();
+        });
+
+        document.getElementById("cerrar-carrito").addEventListener("click", () => modalCarrito.close());
+
+        modalCarrito.addEventListener("click", event => {
+            if (event.target === modalCarrito) modalCarrito.close();
+        });
+
+        document.getElementById("vaciar-carrito").addEventListener("click", () => {
+            carrito = [];
+            actualizarInterfaz();
+            mostrarNotificacion("Se vació tu carrito.");
+        });
+
+        document.getElementById("enviar-pedido").addEventListener("click", generarReciboPedido);
+        document.getElementById("cerrar-recibo").addEventListener("click", () => modalRecibo.close());
+        document.getElementById("imprimir-recibo").addEventListener("click", () => window.print());
+
+        modalRecibo.addEventListener("click", event => {
+            if (event.target === modalRecibo) modalRecibo.close();
+        });
+
+        actualizarInterfaz();
+    </script>
+</body>
+</html>

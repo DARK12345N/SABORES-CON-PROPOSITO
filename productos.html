@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#173f32">
+    <meta name="description" content="Explora los snacks naturales de Sabores con Propósito.">
+    <title>Productos | Sabores con Propósito</title>
+    <link rel="stylesheet" href="tienda.css">
+    <script src="tienda.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-content" aria-label="Navegación principal">
+            <a class="brand" href="index.html" aria-label="Sabores con Propósito, inicio">
+                <img class="brand-logo" src="IMAGEN/image_5a3834a5.png" alt="">
+                <span class="brand-name">Sabores con Propósito</span>
+            </a>
+            <div class="nav-actions">
+                <a class="nav-link" href="index.html">Inicio</a>
+                <a class="nav-link" href="productos.html" aria-current="page">Productos</a>
+                <a class="nav-link" href="contacto.html">Contacto</a>
+                <a class="cart-open" href="carrito.html">
+                    Mi carrito <span class="cart-count" data-cart-count aria-label="0 productos">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <header class="page-heading">
+            <p class="page-kicker">Una pausa que hace bien</p>
+            <h1>Nuestros productos</h1>
+            <p class="page-description">Snacks hechos con ingredientes honestos para acompañar tus días con energía y buen sabor.</p>
+        </header>
+        <section class="product-grid" id="contenedor-productos" aria-label="Catálogo de productos" aria-live="polite"></section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Sabores con Propósito · Buenos ingredientes, mejores momentos.</p>
+        <nav class="footer-links" aria-label="Navegación inferior">
+            <a href="index.html">Inicio</a>
+            <a href="productos.html">Productos</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="carrito.html">Mi carrito</a>
+        </nav>
+    </footer>
+    <div class="notice" id="notificacion" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
